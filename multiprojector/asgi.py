@@ -21,11 +21,9 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'multiprojector.settings')
 asgi_application = get_asgi_application()
 
 application = ProtocolTypeRouter({
-    # Django's ASGI application to handle traditional HTTP requests
     "http": asgi_application,
     "https": asgi_application,
 
-    # WebSocket chat handler
     "websocket": AllowedHostsOriginValidator(
         AuthMiddlewareStack(
             URLRouter(streaming.urls.websocket_urlpatterns)

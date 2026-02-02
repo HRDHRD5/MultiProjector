@@ -25,5 +25,5 @@ router.register("sessions", views.StreamingSessionViewSet)
 urlpatterns = router.urls
 
 websocket_urlpatterns = [
-    path('watch/', views.ProjectorStream.as_asgi())
+    path('stream/', views.ProjectorStream.as_asgi()),
 ]

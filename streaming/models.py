@@ -7,10 +7,15 @@ class StreamingSession(models.Model):
     title = models.CharField()
     start = models.DateTimeField(default=timezone.now)
     end = models.DateTimeField(null=True, blank=True)
+    resolution_x = models.IntegerField(default=1080)
+    resolution_y = models.IntegerField(default=1920)
 
     @property
     def active(self):
         return self.end is None
+
+    def __str__(self):
+        return self.title
 
 
 class StreamingSessionSerializer(serializers.ModelSerializer):

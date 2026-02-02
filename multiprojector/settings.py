@@ -39,6 +39,7 @@ CSRF_TRUSTED_ORIGINS = os.getenv(
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -80,7 +81,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'multiprojector.wsgi.application'
-
+ASGI_APPLICATION = 'multiprojector.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases

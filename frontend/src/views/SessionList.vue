@@ -2,7 +2,7 @@
   <div class="grid grid-cols-4 gap-20 p-10 overflow-hidden">
     <Card v-for="session in sessions">
       <template #title>
-        {{ session["title"] }}
+        {{ session["title"] }} ({{ session["resolution_x"] }}x{{ session["resolution_y"] }})
       </template>
       <template #subtitle>
         Open since {{ new Date(session["start"]).toLocaleString(locale, {
@@ -20,7 +20,20 @@
         </div>
       </template>
     </Card>
-    <div v-if="sessions.length == 0" class="fixed top-0 left-0 w-full h-full flex items-center justify-center">
+    <Card>
+      <template #title>
+        Add your own Session
+      </template>
+      <template #subtitle>
+        Open a public Session
+      </template>
+      <template #footer>
+        <div class="flex justify-end">
+          <CreateSession @created="loadSessions"/>
+        </div>
+      </template>
+    </Card>
+    <div v-if="sessions.length == 0" class="fixed z-[-50] top-0 left-0 w-full h-full flex items-center justify-center">
       <Card v-if="loaded">
         <template #title>
           There are no sessions available!
@@ -39,6 +52,7 @@
 </template>
 
 <script setup lang="ts">
+import CreateSession from '@/components/dialogs/CreateSession.vue';
 import { ref } from 'vue';
 
 const sessions = ref([]);
